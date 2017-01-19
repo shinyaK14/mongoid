@@ -399,19 +399,7 @@ post:
   - func: "cleanup"
 
 tasks:
-
-#    # Compile / check build variant
-#    - name: static-analysis
-#      commands:
-#        - func: "exec script"
-#          vars:
-#            file: ".evergreen/compile.sh"
-#        - func: "upload build"
-
     - name: "test"
-#      depends_on:
-#        - variant: "static-checks"
-#          name: "static-analysis"
       commands:
         - func: "bootstrap mongo-orchestration"
         - func: "run tests"
@@ -421,27 +409,27 @@ axes:
     display_name: MongoDB Version
     values:
       - id: "latest"
-        display_name: "latest"
+        display_name: "MongoDB latest"
         variables:
            VERSION: "latest"
       - id: "3.4"
-        display_name: "3.4"
+        display_name: "MongoDB 3.4"
         variables:
            VERSION: "3.4"
       - id: "3.2"
-        display_name: "3.2"
+        display_name: "MongoDB 3.2"
         variables:
            VERSION: "3.2"
       - id: "3.0"
-        display_name: "3.0"
+        display_name: "MongoDB 3.0"
         variables:
            VERSION: "3.0"
       - id: "2.6"
-        display_name: "2.6"
+        display_name: "MongoDB 2.6"
         variables:
            VERSION: "2.6"
       - id: "2.4"
-        display_name: "2.4"
+        display_name: "MongoDB 2.4"
         variables:
            VERSION: "2.4"
 
@@ -485,18 +473,22 @@ axes:
   - id: "ruby"
     display_name: Ruby Version
     values:
-#      - id: "ruby-1.9"
-#        display_name: ruby-1.9
-#        variables:
-#           RVM_RUBY: "ruby-1.9"
-#      - id: "ruby-2.0"
-#        display_name: ruby-2.0
-#        variables:
-#           RVM_RUBY: "ruby-2.0"
+      - id: "ruby-2.2"
+        display_name: ruby-2.2
+        variables:
+           RVM_RUBY: "ruby-2.2"
       - id: "ruby-2.3"
         display_name: ruby-2.3
         variables:
            RVM_RUBY: "ruby-2.3"
+      - id: "ruby-2.4"
+        display_name: ruby-2.4
+        variables:
+           RVM_RUBY: "ruby-2.4"
+      - id: "ruby-head"
+        display_name: ruby-head
+        variables:
+           RVM_RUBY: "ruby-head"
 #      - id: "jruby-1.7"
 #        display_name: jruby-1.7
 #        variables:
@@ -523,18 +515,29 @@ axes:
     display_name: Driver Version
     values:
       - id: latest
-        display_name: "Latest"
+        display_name: "Driver stable"
         variables:
            DRIVER: "latest"
       - id: master
-        display_name: "Master"
+        display_name: "Driver Master"
         variables:
            DRIVER: "master"
+  - id: "rails"
+    display_name: Rails Version
+    values:
+      - id: latest
+        display_name: "Rails Latest stable"
+        variables:
+           RAILS: "latest"
+      - id: master
+        display_name: "Rails Master"
+        variables:
+           RAILS: "master"
 
 buildvariants:
-- matrix_name: "debian-mongodb-3.4-ruby-2.3-standalone"
-  matrix_spec: { ruby: "ruby-2.3", mongodb-version: "3.4", topology: "standalone", driver: "*" }
-  display_name: "${mongodb-version} ${topology} ${ruby} ${driver}"
+- matrix_name: "debian-all-standalone"
+  matrix_spec: { driver: "*", ruby: "*", mongodb-version: "3.4", topology: "standalone", rails: "*" }
+  display_name: "${ruby}, ${driver}, ${mongodb-version}, ${rails}"
   run_on:
     - debian81-test
   tasks:
