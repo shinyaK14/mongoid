@@ -18,5 +18,4 @@ rvm install $RVM_RUBY
 rvm use $RVM_RUBY
 gem install bundler
 bundle install
-bundle exec rake clean
 bundle exec rake spec
