@@ -521,23 +521,6 @@ axes:
         run_on: rhel70-small
 
 buildvariants:
-#- matrix_name: "all-topologies-all-rubies-rhel70"
-#  matrix_spec: { auth: "*", ssl: "*", ruby: "*", mongodb-version: "*", topology: "*", os: "rhel70" }
-#  display_name: "${version} ${topology} ${auth} ${ssl} ${ruby} ${os}"
-#  tasks:
-#     - name: "test"
-#- matrix_name: "all-os-all-ruby-auth-nossl-standalone"
-#  matrix_spec: { auth: "auth", ssl: "nossl", ruby: "*", mongodb-version: "*", topology: "standalone", os: "*" }
-#  display_name: "${version} ${topology} ${auth} ${ssl} ${ruby} ${os}"
-#  tasks:
-#     - name: "test"
-#- matrix_name: "debian-mongodb-3.4-ruby-2.3-all-topologies-all-auth-all-ssl"
-#  matrix_spec: { auth: "*", ssl: "*", ruby: "ruby-2.3", mongodb-version: "3.4", topology: "*" }
-#  display_name: "${version} ${topology} ${auth} ${ssl} ${ruby}"
-#  run_on:
-#    - debian81-test
-#  tasks:
-#     - name: "test"
 - matrix_name: "debian-mongodb-3.4-ruby-2.3-standalone"
   matrix_spec: { ruby: "ruby-2.3", mongodb-version: "3.4", topology: "standalone" }
   display_name: "${mongodb-version} ${topology} ${ruby}"
