@@ -12,10 +12,15 @@ MONGODB_URI=${MONGODB_URI:-}
 
 export CI=evergreen
 
-
 source ~/.rvm/scripts/rvm
 rvm install $RVM_RUBY
 rvm use $RVM_RUBY
 gem install bundler
-bundle install
+
+if [ "$DRIVER" == "master" ]; then
+  bundle install --gemfile=gemfiles/driver_master.gemfile
+else
+  bundle install
+fi
+
 bundle exec rake spec

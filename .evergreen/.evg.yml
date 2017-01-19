@@ -519,10 +519,21 @@ axes:
       - id: rhel70
         display_name: "RHEL 7.0"
         run_on: rhel70-small
+  - id: "driver"
+    display_name: Driver Version
+    values:
+      - id: latest
+        display_name: "Latest"
+        variables:
+           DRIVER: "latest"
+      - id: master
+        display_name: "Master"
+        variables:
+           DRIVER: "master"
 
 buildvariants:
 - matrix_name: "debian-mongodb-3.4-ruby-2.3-standalone"
-  matrix_spec: { ruby: "ruby-2.3", mongodb-version: "3.4", topology: "standalone" }
+  matrix_spec: { ruby: "ruby-2.3", mongodb-version: "3.4", topology: "standalone" driver: "*" }
   display_name: "${mongodb-version} ${topology} ${ruby}"
   run_on:
     - debian81-test
