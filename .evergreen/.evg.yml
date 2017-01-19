@@ -533,7 +533,7 @@ axes:
 
 buildvariants:
 - matrix_name: "debian-mongodb-3.4-ruby-2.3-standalone"
-  matrix_spec: { ruby: "ruby-2.3", mongodb-version: "3.4", topology: "standalone" driver: "*" }
+  matrix_spec: { ruby: "ruby-2.3", mongodb-version: "3.4", topology: "standalone", driver: "*" }
   display_name: "${mongodb-version} ${topology} ${ruby}"
   run_on:
     - debian81-test
