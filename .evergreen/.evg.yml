@@ -539,6 +539,6 @@ buildvariants:
   matrix_spec: { driver: "*", ruby: "*", mongodb-version: "3.4", topology: "standalone", rails: "*" }
   display_name: "${ruby}, ${driver}, ${mongodb-version}, ${rails}"
   run_on:
-    - debian81-test
+    - rhel70-small
   tasks:
      - name: "test"
