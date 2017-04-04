@@ -11,6 +11,7 @@ set -o errexit  # Exit the script with error if any of the commands fail
 MONGODB_URI=${MONGODB_URI:-}
 
 export CI=evergreen
+export JRUBY_OPTS="--server -J-Xms512m -J-Xmx1G"
 
 source ~/.rvm/scripts/rvm
 rvm install $RVM_RUBY
